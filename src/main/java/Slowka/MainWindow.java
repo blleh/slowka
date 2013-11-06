@@ -3,7 +3,6 @@ package Slowka;
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Alert;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.Component;
@@ -12,7 +11,6 @@ import org.apache.pivot.wtk.FileBrowserSheet;
 import org.apache.pivot.wtk.Form.Section;
 import org.apache.pivot.wtk.Keyboard;
 import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.Sheet;
 import org.apache.pivot.wtk.SheetCloseListener;
@@ -21,7 +19,6 @@ import org.apache.pivot.wtk.Window;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.HashMap;
@@ -45,13 +42,13 @@ public class MainWindow extends Window implements Bindable {
 
 	private Map<String, String> wordsMap = new HashMap<String, String>();
 	private Iterator<Entry<String,String>> iterator;
-	{
-		wordsMap.put("kot", "cat");
-		wordsMap.put("pies", "dog");
-		wordsMap.put("krowa", "cow");
-		wordsMap.put("kon", "horse");
-		iterator = wordsMap.entrySet().iterator();
-	}
+//	{
+//		wordsMap.put("kot", "cat");
+//		wordsMap.put("pies", "dog");
+//		wordsMap.put("krowa", "cow");
+//		wordsMap.put("kon", "horse");
+//		iterator = wordsMap.entrySet().iterator();
+//	}
 	private Entry<String, String> currentEntry;
 	private int correct;
 	private int incorrect;
@@ -59,7 +56,7 @@ public class MainWindow extends Window implements Bindable {
 
 	@Override
 	public void initialize(org.apache.pivot.collections.Map<String, Object> strings, URL url, Resources strings2) {
-		loadInitial();
+		finishOldSuite();
 		checkButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
@@ -69,7 +66,7 @@ public class MainWindow extends Window implements Bindable {
 					Prompt.prompt("Poprawnie!", MainWindow.this);
 				} else {
 					incorrect++;
-					Prompt.prompt("Niepoprawnie!", MainWindow.this);
+					Prompt.prompt(String.format("Niepoprawnie! Powinno byc: %s", currentEntry.getValue()), MainWindow.this);
 				}
 				englishWord.setText("");
 				updateLabels();
@@ -119,14 +116,16 @@ public class MainWindow extends Window implements Bindable {
 				wordsMap.put(line.split(",")[0].trim(), line.split(",")[1].trim());
 			};
 			iterator = wordsMap.entrySet().iterator();
-			loadInitial();
+			startNewSuite();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	private void loadInitial() {
+	private void startNewSuite() {
 		index = correct = incorrect = 0;
+		checkButton.setEnabled(true);
+		englishWord.setEnabled(true);
 		updateLabels();
 		loadWord();
 	}
@@ -136,9 +135,8 @@ public class MainWindow extends Window implements Bindable {
 			currentEntry = iterator.next();
 			polishWord.setText(currentEntry.getKey());
 			index++;
-			checkButton.setEnabled(true);
 		} else {
-			checkButton.setEnabled(false);
+			finishOldSuite();
 			alert(INFO, String.format("Zestaw ukonczony.\nPoprawne: %d\nNiepoprawne: %d\n", correct, incorrect), MainWindow.this);
 		}
 	}
@@ -146,5 +144,11 @@ public class MainWindow extends Window implements Bindable {
 	private void updateLabels() {
 		formSection.setHeading(String.format("Slowko %d/%d", index+1, wordsMap.size()));
 		status.setText(String.format("Poprawne: %d Niepoprawne: %d", correct, incorrect));
+	}
+
+	private void finishOldSuite() {
+		formSection.setHeading("Wybierz nowy zestaw");
+		checkButton.setEnabled(false);
+		englishWord.setEnabled(false);
 	}
 }

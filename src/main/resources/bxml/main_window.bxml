@@ -13,7 +13,7 @@
 
 			<TablePane.Row height="-1">
 				<Form>
-					<Form.Section bxml:id="formSection" heading="1/10">
+					<Form.Section bxml:id="formSection" heading="">
 						<BoxPane Form.label="Polski">
 							<Label bxml:id="polishWord"/>
 						</BoxPane>
