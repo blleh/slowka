@@ -38,7 +38,8 @@
 			<TablePane.Row height="-1">
 				<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
 					<Label bxml:id="status"/>
-					<Label text="                          "/>
+					<Label text="   "/>
+					<PushButton bxml:id="restartButton" buttonData="Ten sam zestaw od nowa" styles="{minimumAspectRatio:3}"/>
 					<PushButton bxml:id="loadButton" buttonData="Wczytaj zestaw z pliku" styles="{minimumAspectRatio:3}"/>
 				</BoxPane>
 			</TablePane.Row>

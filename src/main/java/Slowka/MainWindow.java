@@ -39,16 +39,10 @@ public class MainWindow extends Window implements Bindable {
 	@BXML private Button checkButton;
 	@BXML private Button loadButton;
 	@BXML private Label status;
+	@BXML private Button restartButton;
 
 	private Map<String, String> wordsMap = new HashMap<String, String>();
 	private Iterator<Entry<String,String>> iterator;
-//	{
-//		wordsMap.put("kot", "cat");
-//		wordsMap.put("pies", "dog");
-//		wordsMap.put("krowa", "cow");
-//		wordsMap.put("kon", "horse");
-//		iterator = wordsMap.entrySet().iterator();
-//	}
 	private Entry<String, String> currentEntry;
 	private int correct;
 	private int incorrect;
@@ -66,11 +60,18 @@ public class MainWindow extends Window implements Bindable {
 					Prompt.prompt("Poprawnie!", MainWindow.this);
 				} else {
 					incorrect++;
-					Prompt.prompt(String.format("Niepoprawnie! Powinno byc: %s", currentEntry.getValue()), MainWindow.this);
+					Prompt.prompt(String.format("Niepoprawnie! %s", currentEntry.getValue()), MainWindow.this);
 				}
 				englishWord.setText("");
 				updateLabels();
 				loadWord();
+			}
+		});
+
+		restartButton.getButtonPressListeners().add(new ButtonPressListener() {
+			@Override
+			public void buttonPressed(Button button) {
+				startNewSuite();
 			}
 		});
 
@@ -97,7 +98,7 @@ public class MainWindow extends Window implements Bindable {
 					public void sheetClosed(Sheet sheet) {
 						if (sheet.getResult()) {
 							File file = fileBrowserSheet.getSelectedFile();
-							loadNewFile(file);
+							loadNewSuite(file);
 						} else {
 							Prompt.prompt(ERROR, "Nie wybrano pliku", MainWindow.this);
 						}
@@ -107,7 +108,7 @@ public class MainWindow extends Window implements Bindable {
 		});
 	}
 
-	private void loadNewFile(File file) {
+	private void loadNewSuite(File file) {
 		try {
 			wordsMap.clear();
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -115,7 +116,6 @@ public class MainWindow extends Window implements Bindable {
 			while((line = br.readLine()) != null) {
 				wordsMap.put(line.split(",")[0].trim(), line.split(",")[1].trim());
 			};
-			iterator = wordsMap.entrySet().iterator();
 			startNewSuite();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -126,6 +126,7 @@ public class MainWindow extends Window implements Bindable {
 		index = correct = incorrect = 0;
 		checkButton.setEnabled(true);
 		englishWord.setEnabled(true);
+		iterator = wordsMap.entrySet().iterator();
 		updateLabels();
 		loadWord();
 	}

@@ -9,12 +9,13 @@ import org.apache.pivot.wtk.Window;
 
 public class App implements Application {
 
+	public static final String MAIN_WINDOW_BXML = "/bxml/main_window.bxml";
 	private Window window = null;
+	private BXMLSerializer bxmlSerializer = new BXMLSerializer();
 
 	@Override
 	public void startup(Display display, Map<String, String> properties) throws Exception {
-		BXMLSerializer bxmlSerializer = new BXMLSerializer();
-		window = (Window) bxmlSerializer.readObject(getClass().getResource("/bxml/main_window.bxml"));
+		window = (Window) bxmlSerializer.readObject(getClass().getResource(MAIN_WINDOW_BXML));
 		window.open(display);
 	}
 
