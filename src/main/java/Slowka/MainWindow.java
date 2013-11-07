@@ -11,6 +11,7 @@ import org.apache.pivot.wtk.FileBrowserSheet;
 import org.apache.pivot.wtk.Form.Section;
 import org.apache.pivot.wtk.Keyboard;
 import org.apache.pivot.wtk.Label;
+import org.apache.pivot.wtk.MessageType;
 import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.Sheet;
 import org.apache.pivot.wtk.SheetCloseListener;
@@ -26,10 +27,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static java.util.Map.Entry;
-import static org.apache.pivot.wtk.Alert.alert;
 import static org.apache.pivot.wtk.FileBrowserSheet.Mode.OPEN;
 import static org.apache.pivot.wtk.MessageType.ERROR;
-import static org.apache.pivot.wtk.MessageType.INFO;
 
 public class MainWindow extends Window implements Bindable {
 
@@ -60,7 +59,7 @@ public class MainWindow extends Window implements Bindable {
 					Prompt.prompt("Poprawnie!", MainWindow.this);
 				} else {
 					incorrect++;
-					Prompt.prompt(String.format("Niepoprawnie! %s", currentEntry.getValue()), MainWindow.this);
+					Prompt.prompt(ERROR, String.format("%s", currentEntry.getValue()), MainWindow.this);
 				}
 				englishWord.setText("");
 				updateLabels();
@@ -138,7 +137,6 @@ public class MainWindow extends Window implements Bindable {
 			index++;
 		} else {
 			finishOldSuite();
-			alert(INFO, String.format("Zestaw ukonczony.\nPoprawne: %d\nNiepoprawne: %d\n", correct, incorrect), MainWindow.this);
 		}
 	}
 

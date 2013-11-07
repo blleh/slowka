@@ -24,10 +24,16 @@
 				</Form>
 			</TablePane.Row>
 
-			<TablePane.Row height="1*">
+			<TablePane.Row height="-1">
 				<BoxPane styles="{horizontalAlignment:'center', verticalAlignment:'top'}">
 					<PushButton bxml:id="checkButton" buttonData="Sprawdz"
 								styles="{minimumAspectRatio:3}"/>
+				</BoxPane>
+			</TablePane.Row>
+
+			<TablePane.Row height="1*">
+				<BoxPane styles="{padding: 10, horizontalAlignment:'center', verticalAlignment:'top'}">
+					<Label bxml:id="status"/>
 				</BoxPane>
 			</TablePane.Row>
 
@@ -37,8 +43,6 @@
 
 			<TablePane.Row height="-1">
 				<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
-					<Label bxml:id="status"/>
-					<Label text="   "/>
 					<PushButton bxml:id="restartButton" buttonData="Ten sam zestaw od nowa" styles="{minimumAspectRatio:3}"/>
 					<PushButton bxml:id="loadButton" buttonData="Wczytaj zestaw z pliku" styles="{minimumAspectRatio:3}"/>
 				</BoxPane>
