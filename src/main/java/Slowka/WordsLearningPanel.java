@@ -49,13 +49,13 @@ public class WordsLearningPanel extends BoxPane implements Bindable {
 	@Override
 	public void initialize(org.apache.pivot.collections.Map<String, Object> strings, URL url, Resources strings2) {
 
+		final MainWindow activeWindow = (MainWindow) WordsLearningPanel.this.getAncestor(MainWindow.class);
 		finishOldSuite();
+
 		checkButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
 				String input = englishWord.getText();
-				final MainWindow activeWindow = (MainWindow) WordsLearningPanel.this.getParent().getParent();
-
 				if (currentEntry.getValue().equals(input)) {
 					correct++;
 					Prompt.prompt("Poprawnie!", activeWindow);
@@ -94,7 +94,6 @@ public class WordsLearningPanel extends BoxPane implements Bindable {
 			public void buttonPressed(Button button) {
 				final FileBrowserSheet fileBrowserSheet = new FileBrowserSheet();
 				fileBrowserSheet.setMode(OPEN);
-				final MainWindow activeWindow = (MainWindow) WordsLearningPanel.this.getParent().getParent();
 				fileBrowserSheet.open(activeWindow, new SheetCloseListener() {
 					@Override
 					public void sheetClosed(Sheet sheet) {

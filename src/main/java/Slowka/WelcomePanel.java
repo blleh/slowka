@@ -24,7 +24,7 @@ public class WelcomePanel extends BoxPane implements Bindable {
 		wordsButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
-				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getParent().getParent();
+				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getAncestor(MainWindow.class);
 				activeWindow.openTestPanel(WORDS);
 			}
 		});
@@ -32,7 +32,7 @@ public class WelcomePanel extends BoxPane implements Bindable {
 		singleChoiceTestButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
-				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getParent().getParent();
+				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getAncestor(MainWindow.class);
 				activeWindow.openTestPanel(SINGLE_CHOICE_TEST);
 			}
 		});
