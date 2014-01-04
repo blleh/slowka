@@ -6,7 +6,6 @@ import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
-import org.apache.pivot.wtk.CardPane;
 import org.apache.pivot.wtk.Component;
 import org.apache.pivot.wtk.ComponentKeyListener;
 import org.apache.pivot.wtk.FileBrowserSheet;
@@ -17,7 +16,6 @@ import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.Sheet;
 import org.apache.pivot.wtk.SheetCloseListener;
 import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.skin.CardPaneSkin;
 
 import java.io.BufferedReader;
 import java.io.File;
