@@ -1,4 +1,4 @@
-package temp;
+package slowka;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;

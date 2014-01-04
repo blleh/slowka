@@ -1,4 +1,4 @@
-package temp;
+package slowka;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;
@@ -11,8 +11,8 @@ import org.apache.pivot.wtk.PushButton;
 
 import java.net.URL;
 
-import static temp.MainWindow.LearningActivity.SINGLE_CHOICE_TEST;
-import static temp.MainWindow.LearningActivity.WORDS;
+import static slowka.MainWindow.LearningActivity.SINGLE_CHOICE_TEST;
+import static slowka.MainWindow.LearningActivity.WORDS;
 
 public class WelcomePanel extends BoxPane implements Bindable {
 

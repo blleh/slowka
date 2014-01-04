@@ -1,4 +1,4 @@
-package temp;
+package slowka;
 
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
