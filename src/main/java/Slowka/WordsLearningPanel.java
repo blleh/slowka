@@ -38,7 +38,6 @@ public class WordsLearningPanel extends BoxPane implements Bindable {
 	@BXML private Button loadButton;
 	@BXML private Label status;
 	@BXML private Button restartButton;
-	@BXML private CardPane cardPanis;
 
 	private java.util.Map<String, String> wordsMap = new HashMap<String, String>();
 	private Iterator<java.util.Map.Entry<String,String>> iterator;
@@ -49,7 +48,6 @@ public class WordsLearningPanel extends BoxPane implements Bindable {
 
 	@Override
 	public void initialize(org.apache.pivot.collections.Map<String, Object> strings, URL url, Resources strings2) {
-		cardPanis.getStyles().put("selectionChangeEffect", CardPaneSkin.SelectionChangeEffect.CROSSFADE);
 
 		finishOldSuite();
 		checkButton.getButtonPressListeners().add(new ButtonPressListener() {
