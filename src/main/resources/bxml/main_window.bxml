@@ -1,54 +1,13 @@
-<MainWindow title="Slowka dla Marysi!" maximized="true"
+<MainWindow title="slowka dla Marysi!" maximized="true"
 			xmlns:bxml="http://pivot.apache.org/bxml"
-			xmlns="Slowka">
+			xmlns="slowka">
 
-	<Border title="Slowka" styles="{padding:20}"
-			xmlns:bxml="http://pivot.apache.org/bxml"
-			xmlns="org.apache.pivot.wtk">
-
-		<TablePane>
-			<columns>
-				<TablePane.Column width="1*"/>
-			</columns>
-
-			<TablePane.Row height="-1">
-				<Form>
-					<Form.Section bxml:id="formSection" heading="">
-						<BoxPane Form.label="Polski">
-							<Label bxml:id="polishWord"/>
-						</BoxPane>
-						<BoxPane Form.label="Angielski">
-							<TextInput bxml:id="englishWord"/>
-						</BoxPane>
-					</Form.Section>
-				</Form>
-			</TablePane.Row>
-
-			<TablePane.Row height="-1">
-				<BoxPane styles="{horizontalAlignment:'center', verticalAlignment:'top'}">
-					<PushButton bxml:id="checkButton" buttonData="Sprawdz"
-								styles="{minimumAspectRatio:3}"/>
-				</BoxPane>
-			</TablePane.Row>
-
-			<TablePane.Row height="1*">
-				<BoxPane styles="{padding: 10, horizontalAlignment:'center', verticalAlignment:'top'}">
-					<Label bxml:id="status"/>
-				</BoxPane>
-			</TablePane.Row>
-
-			<TablePane.Row height="-1">
-				<Separator/>
-			</TablePane.Row>
-
-			<TablePane.Row height="-1">
-				<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
-					<PushButton bxml:id="restartButton" buttonData="Ten sam zestaw od nowa" styles="{minimumAspectRatio:3}"/>
-					<PushButton bxml:id="loadButton" buttonData="Wczytaj zestaw z pliku" styles="{minimumAspectRatio:3}"/>
-				</BoxPane>
-			</TablePane.Row>
-
-		</TablePane>
-	</Border>
+	<CardPane bxml:id="cardPane" selectedIndex="0" styles="{selectionChangeEffect:'CROSSFADE'}"
+			  xmlns:bxml="http://pivot.apache.org/bxml"
+			  xmlns="org.apache.pivot.wtk">
+		<bxml:include src="welcome_panel.bxml"/>
+		<bxml:include src="words_learning_panel.bxml"/>
+		<bxml:include src="not_implemented_yet_panel.bxml"/>
+	</CardPane>
 
 </MainWindow>

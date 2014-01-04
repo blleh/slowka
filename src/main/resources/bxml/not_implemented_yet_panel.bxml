@@ -1,0 +1,7 @@
+<NotImplementedYetPanel xmlns:bxml="http://pivot.apache.org/bxml"
+			  xmlns="slowka" styles="{fill:true, padding: 30}">
+
+	<Label text="Funkcjonalność jeszcze nie gotowa." styles="{padding:20}"
+			xmlns:bxml="http://pivot.apache.org/bxml"
+			xmlns="org.apache.pivot.wtk"/>
+</NotImplementedYetPanel>

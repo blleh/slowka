@@ -1,0 +1,14 @@
+<WelcomePanel xmlns:bxml="http://pivot.apache.org/bxml"
+			  xmlns="slowka" styles="{fill:true, padding: 30}">
+
+	<Border title="Witaj w programie do nauki" styles="{padding:20}" x="0" y="0" width="600" height="400"
+			xmlns:bxml="http://pivot.apache.org/bxml"
+			xmlns="org.apache.pivot.wtk">
+
+		<BoxPane orientation="VERTICAL" styles="{fill:true, spacing:10, padding:30}">
+			<Label text="Wybierz rodzaj nauki"/>
+			<PushButton bxml:id="wordsButton" buttonData="Nauka Slowek"/>
+			<PushButton bxml:id="singleChoiceTestButton" buttonData="Testy jednokrotnego wyboru"/>
+		</BoxPane>
+	</Border>
+</WelcomePanel>

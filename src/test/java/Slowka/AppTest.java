@@ -1,4 +1,4 @@
-package Slowka;
+package slowka;
 
 
 import org.apache.pivot.beans.BXMLSerializer;
