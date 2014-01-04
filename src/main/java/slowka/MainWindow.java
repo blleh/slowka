@@ -2,6 +2,7 @@ package slowka;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;
+import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
 import org.apache.pivot.wtk.CardPane;
 import org.apache.pivot.wtk.Window;
@@ -13,7 +14,7 @@ public class MainWindow extends Window implements Bindable {
 	@BXML private CardPane cardPane;
 
 	@Override
-	public void initialize(org.apache.pivot.collections.Map<String, Object> strings, URL url, Resources strings2) {
+	public void initialize(Map<String, Object> strings, URL url, Resources strings2) {
 	}
 
 	public void openTestPanel(LearningActivity learningActivity) {
