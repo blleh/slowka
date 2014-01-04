@@ -1,4 +1,4 @@
-package slowka;
+package temp;
 
 import org.apache.pivot.wtk.BoxPane;
 
