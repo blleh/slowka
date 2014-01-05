@@ -1,0 +1,53 @@
+<SingleAnswerTestPanel xmlns:bxml="http://pivot.apache.org/bxml"
+		   xmlns="slowka" styles="{fill:true}">
+
+	<Border title="Nauka słówek" styles="{padding:20}" x="0" y="0"
+			xmlns:bxml="http://pivot.apache.org/bxml"
+			xmlns="org.apache.pivot.wtk">
+
+		<bxml:define>
+			<ButtonGroup bxml:id="answers"/>
+		</bxml:define>
+
+		<TablePane>
+			<columns>
+				<TablePane.Column width="1*"/>
+			</columns>
+
+			<TablePane.Row height="-1">
+				<Form>
+					<Form.Section bxml:id="formSection" heading="">
+						<BoxPane bxml:id="answersPane" orientation="VERTICAL" styles="{fill:true, spacing:10, padding:30}"/>
+					</Form.Section>
+				</Form>
+			</TablePane.Row>
+
+			<TablePane.Row height="-1">
+				<BoxPane styles="{horizontalAlignment:'center', verticalAlignment:'top'}">
+					<PushButton bxml:id="checkButton" buttonData="Sprawdz"
+								styles="{minimumAspectRatio:3}"/>
+				</BoxPane>
+			</TablePane.Row>
+
+			<TablePane.Row height="1*">
+				<BoxPane styles="{padding: 10, horizontalAlignment:'center', verticalAlignment:'top'}">
+					<Label bxml:id="status"/>
+				</BoxPane>
+			</TablePane.Row>
+
+			<TablePane.Row height="-1">
+				<Separator/>
+			</TablePane.Row>
+
+			<TablePane.Row height="-1">
+				<BoxPane styles="{horizontalAlignment:'right', verticalAlignment:'center'}">
+					<PushButton bxml:id="restartButton" buttonData="Ten sam zestaw od nowa"
+								styles="{minimumAspectRatio:3}"/>
+					<PushButton bxml:id="loadButton" buttonData="Wczytaj zestaw z pliku"
+								styles="{minimumAspectRatio:3}"/>
+				</BoxPane>
+			</TablePane.Row>
+
+		</TablePane>
+	</Border>
+</SingleAnswerTestPanel>
