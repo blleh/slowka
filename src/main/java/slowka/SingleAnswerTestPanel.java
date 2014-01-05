@@ -18,7 +18,6 @@ import slowka.models.Question;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,8 +37,8 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	@BXML private Label status;
 	@BXML private Button restartButton;
 
-	private Iterator<java.util.Map.Entry<String,String>> iterator;
-	private java.util.Map.Entry<String, String> currentEntry;
+	private Iterator<Question> iterator;
+	private Question currentQuestion;
 	private int correct;
 	private int incorrect;
 	private int index;
@@ -55,12 +54,12 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 			public void buttonPressed(Button button) {
 				String input = "not implemented yet";
 				final MainWindow activeWindow = (MainWindow) SingleAnswerTestPanel.this.getAncestor(MainWindow.class);
-				if (currentEntry.getValue().equals(input)) {
+				if (currentQuestion.isCorrectAnswer(input)) {
 					correct++;
 					Prompt.prompt("Poprawnie!", activeWindow);
 				} else {
 					incorrect++;
-					Prompt.prompt(ERROR, String.format("%s", currentEntry.getValue()), activeWindow);
+					Prompt.prompt(ERROR, String.format("Niepoprawnie"), activeWindow);
 				}
 				updateLabels();
 				loadQuestion();
@@ -86,6 +85,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 						if (sheet.getResult()) {
 							File file = fileBrowserSheet.getSelectedFile();
 							loadNewSuite(file);
+							startNewSuite();
 						} else {
 							Prompt.prompt(ERROR, "Nie wybrano pliku", activeWindow);
 						}
@@ -129,6 +129,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 
 	private void startNewSuite() {
 		index = correct = incorrect = 0;
+		iterator = questions.iterator();
 		checkButton.setEnabled(true);
 		updateLabels();
 		loadQuestion();
@@ -136,7 +137,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 
 	private void loadQuestion() {
 		if (iterator.hasNext()) {
-			currentEntry = iterator.next();
+			currentQuestion = iterator.next();
 			index++;
 		} else {
 			finishOldSuite();
@@ -144,7 +145,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	}
 
 	private void updateLabels() {
-		formSection.setHeading(String.format("Pytanie %d/%d", index+1, 1000));
+		formSection.setHeading(String.format("Pytanie %d/%d", index+1, questions.size()));
 		status.setText(String.format("Poprawne: %d Niepoprawne: %d", correct, incorrect));
 	}
 
