@@ -14,10 +14,16 @@ import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.RadioButton;
 import org.apache.pivot.wtk.Sheet;
 import org.apache.pivot.wtk.SheetCloseListener;
+import slowka.models.Question;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import static org.apache.pivot.wtk.FileBrowserSheet.Mode.OPEN;
 import static org.apache.pivot.wtk.MessageType.ERROR;
@@ -39,17 +45,11 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	private int index;
 	private RadioButton button1;
 	private RadioButton button2;
+	private List<Question> questions = new ArrayList<Question>();
 
 	@Override
 	public void initialize(org.apache.pivot.collections.Map<String, Object> strings, URL url, Resources strings2) {
 		finishOldSuite();
-
-		answersPane.add(button1);
-		answersPane.add(button2);
-
-		answers.add(button1);
-		answers.add(button2);
-
 		checkButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
@@ -83,7 +83,12 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 				fileBrowserSheet.open(activeWindow, new SheetCloseListener() {
 					@Override
 					public void sheetClosed(Sheet sheet) {
-						Prompt.prompt(ERROR, "Not implemented yet!", activeWindow);
+						if (sheet.getResult()) {
+							File file = fileBrowserSheet.getSelectedFile();
+							loadNewSuite(file);
+						} else {
+							Prompt.prompt(ERROR, "Nie wybrano pliku", activeWindow);
+						}
 					}
 				});
 			}
@@ -91,6 +96,35 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	}
 
 	private void loadNewSuite(File file) {
+		questions.clear();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			Question currentQuestion = null;
+			while ((line = br.readLine()) != null) {
+				if (!line.isEmpty()) {
+					if (currentQuestion == null) {
+						currentQuestion = new Question(line);
+					} else {
+						if (line.startsWith("*")) {
+							currentQuestion.addCorrectAnswer(line);
+						} else {
+							currentQuestion.addAnswer(line);
+						}
+					}
+				} else {
+					if (currentQuestion != null) {
+						questions.add(currentQuestion);
+						currentQuestion = null;
+					}
+				}
+			}
+			if (currentQuestion != null) {
+				questions.add(currentQuestion);
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("error in loading suite", e);
+		}
 	}
 
 	private void startNewSuite() {
