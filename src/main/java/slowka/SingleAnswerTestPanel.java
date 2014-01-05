@@ -14,6 +14,7 @@ import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.RadioButton;
 import org.apache.pivot.wtk.Sheet;
 import org.apache.pivot.wtk.SheetCloseListener;
+import org.apache.pivot.wtk.TextArea;
 import slowka.models.Question;
 
 import java.io.BufferedReader;
@@ -29,21 +30,20 @@ import static org.apache.pivot.wtk.MessageType.ERROR;
 
 public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 
-	@BXML private ButtonGroup answers;
+	@BXML private ButtonGroup answersButtonGroup;
 	@BXML private BoxPane answersPane;
 	@BXML private Form.Section formSection;
 	@BXML private Button checkButton;
 	@BXML private Button loadButton;
 	@BXML private Label status;
 	@BXML private Button restartButton;
+	@BXML private TextArea questionLabel;
 
 	private Iterator<Question> iterator;
 	private Question currentQuestion;
 	private int correct;
 	private int incorrect;
 	private int index;
-	private RadioButton button1;
-	private RadioButton button2;
 	private List<Question> questions = new ArrayList<Question>();
 
 	@Override
@@ -52,7 +52,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 		checkButton.getButtonPressListeners().add(new ButtonPressListener() {
 			@Override
 			public void buttonPressed(Button button) {
-				String input = "not implemented yet";
+				String input = (String) answersButtonGroup.getSelection().getButtonData();
 				final MainWindow activeWindow = (MainWindow) SingleAnswerTestPanel.this.getAncestor(MainWindow.class);
 				if (currentQuestion.isCorrectAnswer(input)) {
 					correct++;
@@ -138,10 +138,21 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	private void loadQuestion() {
 		if (iterator.hasNext()) {
 			currentQuestion = iterator.next();
+			displayQuestion();
 			index++;
 		} else {
 			finishOldSuite();
 		}
+	}
+
+	private void displayQuestion() {
+		answersPane.removeAll();
+		questionLabel.setText(currentQuestion.getQuestion());
+		for (String answer : currentQuestion.getAnswers()) {
+			RadioButton answerButon = new RadioButton(answersButtonGroup, answer);
+			answersPane.add(answerButon);
+		}
+
 	}
 
 	private void updateLabels() {
@@ -150,6 +161,8 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 	}
 
 	private void finishOldSuite() {
+		questionLabel.setText("");
+		answersPane.removeAll();
 		formSection.setHeading("Wybierz nowy zestaw");
 		checkButton.setEnabled(false);
 	}

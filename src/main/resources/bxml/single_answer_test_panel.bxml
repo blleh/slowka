@@ -1,12 +1,12 @@
 <SingleAnswerTestPanel xmlns:bxml="http://pivot.apache.org/bxml"
 		   xmlns="slowka" styles="{fill:true}">
 
-	<Border title="Nauka słówek" styles="{padding:20}" x="0" y="0"
+	<Border title="Nauka słówek" styles="{padding:20}" x="5" y="5"
 			xmlns:bxml="http://pivot.apache.org/bxml"
 			xmlns="org.apache.pivot.wtk">
 
 		<bxml:define>
-			<ButtonGroup bxml:id="answers"/>
+			<ButtonGroup bxml:id="answersButtonGroup"/>
 		</bxml:define>
 
 		<TablePane>
@@ -17,7 +17,12 @@
 			<TablePane.Row height="-1">
 				<Form>
 					<Form.Section bxml:id="formSection" heading="">
-						<BoxPane bxml:id="answersPane" orientation="VERTICAL" styles="{fill:true, spacing:10, padding:30}"/>
+						<ScrollPane horizontalScrollBarPolicy="fill" verticalScrollBarPolicy="fill" preferredWidth="400">
+							<TextArea bxml:id="questionLabel" styles="{wrapText:true}"/>
+						</ScrollPane>
+						<ScrollPane horizontalScrollBarPolicy="fill_to_capacity" verticalScrollBarPolicy="fill" preferredWidth="400">
+							<BoxPane bxml:id="answersPane" orientation="VERTICAL" styles="{fill:true, spacing:10, padding:30}"/>
+						</ScrollPane>
 					</Form.Section>
 				</Form>
 			</TablePane.Row>
