@@ -107,7 +107,7 @@ public class SingleAnswerTestPanel extends BoxPane implements Bindable {
 						currentQuestion = new Question(line);
 					} else {
 						if (line.startsWith("*")) {
-							currentQuestion.addCorrectAnswer(line);
+							currentQuestion.addCorrectAnswer(line.substring(1));
 						} else {
 							currentQuestion.addAnswer(line);
 						}
