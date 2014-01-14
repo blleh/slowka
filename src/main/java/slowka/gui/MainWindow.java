@@ -1,4 +1,4 @@
-package slowka;
+package slowka.gui;
 
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;

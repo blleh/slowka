@@ -1,5 +1,5 @@
 <SingleAnswerTestPanel xmlns:bxml="http://pivot.apache.org/bxml"
-		   xmlns="slowka" styles="{fill:true}">
+		   xmlns="slowka.gui" styles="{fill:true}">
 
 	<Border title="Nauka słówek" styles="{padding:20}" x="5" y="5"
 			xmlns:bxml="http://pivot.apache.org/bxml"

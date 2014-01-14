@@ -1,6 +1,6 @@
 <MainWindow title="slowka dla Marysi!" maximized="true"
 			xmlns:bxml="http://pivot.apache.org/bxml"
-			xmlns="slowka">
+			xmlns="slowka.gui">
 
 	<CardPane bxml:id="cardPane" selectedIndex="0" styles="{selectionChangeEffect:'CROSSFADE'}"
 			  xmlns:bxml="http://pivot.apache.org/bxml"

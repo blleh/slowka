@@ -1,5 +1,5 @@
 <WelcomePanel xmlns:bxml="http://pivot.apache.org/bxml"
-			  xmlns="slowka" styles="{fill:true, padding: 30}">
+			  xmlns="slowka.gui" styles="{fill:true, padding: 30}">
 
 	<Border title="Witaj w programie do nauki" styles="{padding:20}" x="0" y="0" width="600" height="400"
 			xmlns:bxml="http://pivot.apache.org/bxml"

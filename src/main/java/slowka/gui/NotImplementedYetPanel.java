@@ -1,4 +1,4 @@
-package slowka;
+package slowka.gui;
 
 import org.apache.pivot.wtk.BoxPane;
 
