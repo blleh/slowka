@@ -1,7 +1,6 @@
 package slowka.gui.listeners;
 
 import org.apache.pivot.wtk.Button;
-import org.apache.pivot.wtk.Container;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -11,7 +10,7 @@ import slowka.gui.WelcomePanel;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static slowka.gui.MainWindow.LearningActivity.SINGLE_CHOICE_TEST;
+import static slowka.models.LearningActivity.SINGLE_CHOICE_TEST;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SingleChoiceTestPanelSelectionListenerTest {

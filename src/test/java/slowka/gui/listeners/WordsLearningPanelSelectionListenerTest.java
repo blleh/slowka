@@ -10,7 +10,7 @@ import slowka.gui.WelcomePanel;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static slowka.gui.MainWindow.LearningActivity.WORDS;
+import static slowka.models.LearningActivity.WORDS;
 
 @RunWith(MockitoJUnitRunner.class)
 public class WordsLearningPanelSelectionListenerTest {
