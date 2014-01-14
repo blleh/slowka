@@ -25,25 +25,30 @@ public class AppTest {
 	@Mock private Window window;
 	@Mock private BXMLSerializer bxmlSerializer;
 	@Mock private Map<String, String> map;
-	@InjectMocks private App testee;
+	@InjectMocks private App app;
 
 	@Test
 	public void shouldCreateWindow() throws Exception {
 		given(bxmlSerializer.readObject(any(InputStream.class))).willReturn(window);
-		testee.startup(display, map);
+		app.startup(display, map);
 		verifyZeroInteractions(map);
 		verify(window).open(display);
 	}
 
 	@Test
 	public void shouldCloseWindowOnShutDown() throws Exception {
-		testee.shutdown(true);
+		app.shutdown(true);
 		verify(window).close();
 	}
 
 	@Test
 	public void shouldDoNothingForSuspendAndResume() throws Exception {
-		testee.suspend();
-		testee.resume();
+		app.suspend();
+		app.resume();
+	}
+
+	@Test
+	public void shouldRunMainMethod() {
+		App.main("nothing");
 	}
 }

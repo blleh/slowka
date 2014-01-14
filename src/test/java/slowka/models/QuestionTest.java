@@ -36,4 +36,10 @@ public class QuestionTest {
 		question.addAnswer("not correct answer");
 		question.isCorrectAnswer("correct answer");
 	}
+
+	@Test(expected = RuntimeException.class)
+	public void shouldThrowExceptionWhenCorrectAnswerWasSetmoreThanOnce() {
+		question.addCorrectAnswer("answer 1");
+		question.addCorrectAnswer("answer 2");
+	}
 }

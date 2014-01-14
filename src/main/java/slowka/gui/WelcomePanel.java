@@ -8,6 +8,8 @@ import org.apache.pivot.wtk.BoxPane;
 import org.apache.pivot.wtk.Button;
 import org.apache.pivot.wtk.ButtonPressListener;
 import org.apache.pivot.wtk.PushButton;
+import slowka.gui.listeners.SingleChoiceTestPanelSelectionListener;
+import slowka.gui.listeners.WordsLearningPanelSelectionListener;
 
 import java.net.URL;
 
@@ -21,20 +23,7 @@ public class WelcomePanel extends BoxPane implements Bindable {
 
 	@Override
 	public void initialize(Map<String, Object> strings, URL url, Resources strings2) {
-		wordsButton.getButtonPressListeners().add(new ButtonPressListener() {
-			@Override
-			public void buttonPressed(Button button) {
-				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getAncestor(MainWindow.class);
-				activeWindow.openTestPanel(WORDS);
-			}
-		});
-
-		singleChoiceTestButton.getButtonPressListeners().add(new ButtonPressListener() {
-			@Override
-			public void buttonPressed(Button button) {
-				MainWindow activeWindow = (MainWindow) WelcomePanel.this.getAncestor(MainWindow.class);
-				activeWindow.openTestPanel(SINGLE_CHOICE_TEST);
-			}
-		});
+		wordsButton.getButtonPressListeners().add(new WordsLearningPanelSelectionListener(this));
+		singleChoiceTestButton.getButtonPressListeners().add(new SingleChoiceTestPanelSelectionListener(this));
 	}
 }
